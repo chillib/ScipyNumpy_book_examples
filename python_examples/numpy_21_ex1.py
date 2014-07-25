@@ -27,7 +27,16 @@ N = 10
 time1 = timeit.timeit('arr * 1.1', 'from __main__ import arr', number=N) / N
 print time1
 
+# More closely equivalent to what is being done in example above:
+# return new array where all values are multiplied by scalar, leaving orignal unchanged
+time2a = timeit.timeit('[a * 1.1 for a in larr]', 
+	'from __main__ import larr', number=N) / N
+print time2a
+
 # List and custom function for broadcasting
 time2 = timeit.timeit('list_times(larr, 1.1)', 
 	'from __main__ import list_times, larr', number=N) / N
 print time2
+
+
+print time2a/time1, time2/time1, "times slower"
